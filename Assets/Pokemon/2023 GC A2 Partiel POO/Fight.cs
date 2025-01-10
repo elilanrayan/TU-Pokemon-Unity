@@ -44,27 +44,57 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
         /// <exception cref="ArgumentNullException">si une des deux attaques est null</exception>
         public void ExecuteTurn(Skill skillFromCharacter1, Skill skillFromCharacter2)
         {
+
             Character firstAttack;
             Skill skillfirst;
             Character secondAttack;
             Skill skillsecond;
-            if(Character1.Speed > Character2.Speed)
+            if(Character1.CurrentEquipment!=null || Character2.CurrentEquipment != null)
             {
-                firstAttack = Character1;
-                skillfirst = skillFromCharacter1;
-                secondAttack = Character2;
-                skillsecond = skillFromCharacter2;
-            }
-            else
-            {
-                firstAttack = Character2;
-                skillfirst = skillFromCharacter2;
-                secondAttack = Character1;
-                skillsecond = skillFromCharacter1;
+
+                if (Character1.PriorityAttack > Character2.PriorityAttack)
+                {
+                    firstAttack = Character1;
+                    skillfirst = skillFromCharacter1;
+                    secondAttack = Character2;
+                    skillsecond = skillFromCharacter2;
+                }
+                else
+                {
+                    firstAttack = Character2;
+                    skillfirst = skillFromCharacter2;
+                    secondAttack = Character1;
+                    skillsecond = skillFromCharacter1;
+                }
+
+
             }
 
-            //while (true)
-            //{
+            else
+            {
+
+
+                if (Character1.Speed > Character2.Speed)
+                {
+                    firstAttack = Character1;
+                    skillfirst = skillFromCharacter1;
+                    secondAttack = Character2;
+                    skillsecond = skillFromCharacter2;
+                }
+                else
+                {
+                    firstAttack = Character2;
+                    skillfirst = skillFromCharacter2;
+                    secondAttack = Character1;
+                    skillsecond = skillFromCharacter1;
+                }
+
+
+            }
+           
+
+            while (true)
+            {
                 secondAttack.ReceiveAttack(skillfirst);
                 firstAttack.ReceiveAttack(skillsecond);
 
@@ -72,7 +102,7 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
                 {
                     return;
                 }
-           // }
+           }
             
             
         }

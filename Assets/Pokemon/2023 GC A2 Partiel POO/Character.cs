@@ -27,6 +27,8 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
         /// Type de base
         /// </summary>
         TYPE _baseType = TYPE.NORMAL;
+        private int _priorityAttack = 0;
+  
         private int currentHealth;
 
         public Character(int baseHealth, int baseAttack, int baseDefense, int baseSpeed, TYPE baseType)
@@ -40,7 +42,7 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
         /// <summary>
         /// HP actuel du personnage
         /// </summary>
-       public int CurrentHealth { get => _baseHealth; private set => _baseHealth = value; }
+        public int CurrentHealth { get => _baseHealth; private set => _baseHealth = value; }
         //public int CurrentHealth { get ; private set; }
         
         //public int CurrentHealth
@@ -119,9 +121,23 @@ namespace _2023_GC_A2_Partiel_POO.Level_2
                 return _baseSpeed;
             }
         }
+
+
+        public int PriorityAttack
+        {
+            get
+            {
+                if (CurrentEquipment != null)
+                {
+                    return CurrentEquipment.PriorityAttack;
+                }
+                return _priorityAttack;
+            }
+        }
         /// <summary>
         /// Equipement unique du personnage
         /// </summary>
+        /// 
         public Equipment CurrentEquipment { get; private set; }
         /// <summary>
         /// null si pas de status

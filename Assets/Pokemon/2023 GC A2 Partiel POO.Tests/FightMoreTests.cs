@@ -19,11 +19,29 @@ namespace _2023_GC_A2_Partiel_POO.Tests.Level_2
         [Test]
         public void VerifyHPCurrent()
         {
-            var e = new Equipment(-50, 90, 70, 12);
+            var e = new Equipment(-50, 90, 70, 12, 0);
             var c = new Character(100, 50, 30, 20, TYPE.NORMAL);
             c.Equip(e);
             Assert.That(c.MaxHealth, Is.EqualTo(50));
             Assert.That(c.CurrentHealth, Is.EqualTo(50));
+        }
+
+        [Test]
+        public void PriorityAttack()
+        {
+            var c = new Character(10000, 5000, 30, 20, TYPE.NORMAL);
+            var e = new Character(100, 50, 30, 20, TYPE.NORMAL);
+            var d = new Equipment(50, 90, 70, 12, 1);
+            c.Equip(d);
+            Fight f = new Fight(c, e);
+            Punch p = new Punch();
+            MegaPunch mp = new MegaPunch();
+            f.ExecuteTurn(p, mp);
+            Assert.That(e.IsAlive, Is.EqualTo(false));
+            Assert.That(c.IsAlive, Is.EqualTo(true));
+            Assert.That(c.CurrentHealth, Is.EqualTo(c.MaxHealth));
+            Assert.That(f.IsFightFinished, Is.EqualTo(true));
+
         }
         // Tu as probablement remarqué qu'il y a encore beaucoup de code qui n'a pas été testé ...
         // À présent c'est à toi de créer des features et les TU sur le reste du projet
